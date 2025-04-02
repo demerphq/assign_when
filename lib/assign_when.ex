@@ -12,6 +12,7 @@ defmodule AssignWhen do
   but it does work on tuples and anything else that can be expressed
   as THING = THING
   """
+  # Note this code is from Jose Valim from a private conversation I had with him.
   defmacro unquote(:when)({:=, _, [left, right]}, condition) when true do
     quote do
       unquote(left) = if unquote(condition), do: unquote(right), else: unquote(left)
