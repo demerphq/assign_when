@@ -1,18 +1,21 @@
 defmodule AssignWhen do
   @moduledoc """
-  Allows one to replace code like this:
+  Allows the use of 'when' clauses on assignment statements as an alternative to using 'if',
+  avoiding the need for boilerplate 'else' clauses which return the original variables when
+  the condition is 'false'. Eg:
 
-  x = if condition(), do: whatever, else: x
+  `x = 1 when x == nil`
 
-  with code like this:
+  can replace
 
-  x = whatever when condition()
+  `x = if x == nil, do: 1, else: x`
 
-  Exports no functions, just a macro. The macro does no validation,
-  but it does work on tuples and anything else that can be expressed
-  as THING = THING
   """
-  # Note this code is from Jose Valim from a private conversation I had with him.
+
+  # Note this code is from José Valim from a private conversation I had with him.
+  @doc """
+  Allow `when` clauses on assignment statements as an alternative to `if` clauses.
+  """
   defmacro unquote(:when)({:=, _, [left, right]}, condition) when true do
     quote do
       unquote(left) = if unquote(condition), do: unquote(right), else: unquote(left)

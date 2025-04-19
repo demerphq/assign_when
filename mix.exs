@@ -4,7 +4,7 @@ defmodule AssignWhen.MixProject do
   def project do
     [
       app: :assign_when,
-      version: "0.1.0",
+      version: "0.2.0",
       elixir: "~> 1.0",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
@@ -20,7 +20,11 @@ defmodule AssignWhen.MixProject do
     """
     Allows the use of `when` clauses on assignment statements as an alternative to using `if`,
     avoiding the need for boilerplate `else` clauses which return the original variables when
-    the condition is `false`.
+    the condition is `false`. For instance:
+
+    ```elixir
+    x = 1 when x == nil
+    ```
     """
   end
 
