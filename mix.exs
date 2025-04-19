@@ -20,17 +20,7 @@ defmodule AssignWhen.MixProject do
     """
     Allows the use of `when` clauses on assignment statements as an alternative to using `if`,
     avoiding the need for boilerplate `else` clauses which return the original variables when
-    the condition is `false`. Thus you can write
-
-    ```elixir
-    x = 1 when x == nil`
-    ```
-
-    instead of
-
-    ```elixir
-    x = if x == nil, do: 1, else: x`
-    ```
+    the condition is `false`.
     """
   end
 
