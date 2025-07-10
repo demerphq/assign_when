@@ -1,32 +1,40 @@
 # AssignWhen
 
-Allows the use of `when` clauses on assignment statements as an alternative to using `if`,
-avoiding the need for boilerplate `else` clauses which return the original variables when
-the condition is `false`.
+Enables conditional assignment using 'when' clauses, eliminating boilerplate 'if/else' statements.
 
-Statements like this:
+Two syntax variants are provided:
 
-```elixir
-x = if condition(), do: whatever, else: x
-```
-
-can be replaced with code like this:
+**Direct `when` syntax:**
 
 ```elixir
-x = whatever when condition()
+x = 1 when y == nil
 ```
 
-For instance you can write
+**Alternative `set/1` syntax:**
 
 ```elixir
-x = 1 when x == nil
+set x = 1 when y == nil
 ```
 
-Exports no functions, just a macro. The macro does no validation,
-but it does work on tuples and anything else that can be expressed
-as THING = THING
+Both replace the equivalent:
 
-Macro code originally by José Valim
+```elixir
+x = if y == nil, do: 1, else: x
+```
+
+All you need to do is add `import AssignWhen` to your module.
+
+The direct `when` variant is shorter and familiar to users of other languages. The `set/1` variant offers a more conventional approach with better discoverability through LSP.
+
+When using `set/1`, add this to your `.formatter.exs` to prevent formatter from adding parentheses:
+
+```elixir
+import_deps: [:assign_when] # or add to existing `import_deps` list
+```
+
+The macro works on tuples and anything else that can be expressed as `THING = THING`.
+
+Macro code for direct `when` syntax originally suggested by José Valim
 
 ## Installation
 
@@ -36,7 +44,7 @@ in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:assign_when, "~> 0.1.0"}
+    {:assign_when, "~> 0.2.0"}
   ]
 end
 ```

@@ -18,12 +18,12 @@ defmodule AssignWhen.MixProject do
 
   defp description() do
     """
-    Allows the use of `when` clauses on assignment statements as an alternative to using `if`,
-    avoiding the need for boilerplate `else` clauses which return the original variables when
-    the condition is `false`. For instance:
+    Enables conditional assignment using 'when' clauses, eliminating boilerplate 'if/else' statements.
+    Two syntax variants are provided:
 
     ```elixir
-    x = 1 when x == nil
+    x = 1 when y == nil
+    set x = 1 when y == nil
     ```
     """
   end
